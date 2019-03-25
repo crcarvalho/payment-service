@@ -17,7 +17,7 @@ public class PaymentServiceApplication {
 		pay.setNumeroCartao("1234123412341234");
 		pay.setBandeira("VISA");
 		pay.setId("12345");
-		pay.setValidadeCartao("15/05/2022");
+		pay.setValidadeCartao("05/2022");
 		pay.setValorCompra(1500.00);
 
 		MicroservicePayment service = new MicroservicePayment();
