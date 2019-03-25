@@ -21,7 +21,7 @@ public class MicroservicePayment {
 
         PaymentDTO payment = new PaymentDTO();
         ResponseEntity res;
-
+        System.out.println("mapa payment: "+ mapPayments.toString());
         try{
             if( mapPayments.containsKey(id)){
                 payment = mapPayments.get(id);
@@ -38,19 +38,23 @@ public class MicroservicePayment {
     @PostMapping("/payment/save")
     public String savePayment(@RequestBody PaymentDTO aPayment){
 
-        String url = "http://localhost:8080/order/findById/";
+        String url = "http://localhost:8000/payment/findById/";
         PaymentDTO payment = new PaymentDTO();
         try{
-            if( aPayment.getId() == null || aPayment.getId().equals("")){
+            if( aPayment.getId() != null && !aPayment.getId().equals("")){
+                if( mapPayments.containsKey(aPayment.getId())) throw new Exception("Id existente na base de dados.");
                 payment = aPayment;
-                //Gera um novo ID
+                /*/Gera um novo ID
                 String idNovo = String.valueOf(Math.random());
                 idNovo = idNovo.replace(".","");
-                payment.setId(idNovo);
+                payment.setId(idNovo);*/
+
                 //Preenche o Id na URL de retorno
                 url += payment.getId();
                 System.out.println("CR=payment= "+ payment.toString());
                 mapPayments.put( payment.getId(), payment );
+            }else{
+                throw new Exception("Id não informado.");
             }
         }catch(Exception e){
             System.out.println("Exceção: "+e.getMessage());
@@ -62,10 +66,10 @@ public class MicroservicePayment {
 
 
     @PutMapping("/payment/update/{id}")
-    public String updatePayment( @PathVariable(value = "id") String id,
+    public String updatePayment( @PathVariable(value = "id", required = true) String id,
                                  @RequestBody PaymentDTO aPayment ){
 
-        String url = "http://localhost:8081/payment/findById/";
+        String url = "http://localhost:8000/payment/findById/";
         PaymentDTO payment = new PaymentDTO();
         try{
 
@@ -78,12 +82,13 @@ public class MicroservicePayment {
             //Atualiza dados de pagamento
             payment.setBandeira(aPayment.getBandeira());
             payment.setNumeroCartao(aPayment.getNumeroCartao());
-            payment.setBandeira(aPayment.getBandeira());
-            payment.setBandeira(aPayment.getBandeira());
-
+            payment.setValorCompra(aPayment.getValorCompra());
+            payment.setValidadeCartao(aPayment.getValidadeCartao());
+            url += payment.getId();
         }catch(Exception e){
-            System.out.println("Exceção: "+e.getMessage());
-            url += null;
+            String msg = "Exceção: "+e.getMessage();
+            System.out.println(msg);
+            url += msg;
         }
 
         return url;
@@ -94,8 +99,6 @@ public class MicroservicePayment {
         String retorno = "";
         PaymentDTO payment = new PaymentDTO();
         try{
-            if( id == null && id.equals("") )
-                throw new Exception("Favor informar o Id do registro para exclusão.");
             if( !mapPayments.containsKey(id) )
                 throw new Exception("Id não consta da base de dados.");
 
