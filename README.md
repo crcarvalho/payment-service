@@ -19,7 +19,7 @@
     "valorCompra" : double,
     "bandeira" : "STRING"
 }
-`
+```
 ### Método PUT
 
 * PATH: [DOMINIO]/payment/update/{id}
@@ -33,7 +33,7 @@
     "valorCompra" : double,
     "bandeira" : "STRING"
 }
-`
+```
 ### Método DELETE
 
 * PATH: [DOMINIO]/payment/delete/{id}
