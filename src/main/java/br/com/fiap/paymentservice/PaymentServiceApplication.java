@@ -23,6 +23,7 @@ public class PaymentServiceApplication {
 		MicroservicePayment service = new MicroservicePayment();
 		service.savePayment(pay);
 
+
 	}
 
 }

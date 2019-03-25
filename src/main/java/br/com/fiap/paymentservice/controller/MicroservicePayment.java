@@ -13,7 +13,7 @@ import java.util.HashMap;
 @RestController
 public class MicroservicePayment {
 
-    private HashMap<String, PaymentDTO> mapPayments = new HashMap<>();
+    private static HashMap<String, PaymentDTO> mapPayments = new HashMap<>();
 
     @GetMapping("/payment/findById/{id}")
     public ResponseEntity<PaymentDTO> findOrderById(@PathVariable(value="id", required = true) String id){
