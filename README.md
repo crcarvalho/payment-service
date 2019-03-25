@@ -15,11 +15,13 @@
 {
     "id" : "STRING",
     "numeroCartao" : "STRING",
-    "validadeCartao" : "STRING" format "MM/YYYY",
+    "validadeCartao" : "STRING",
     "valorCompra" : double,
     "bandeira" : "STRING"
 }
 ```
+* FORMATOS:
+	- validadeCartao: "MM/YYYY"
 ### Método PUT
 
 * PATH: [DOMINIO]/payment/update/{id}
@@ -29,11 +31,13 @@
 ```json
 {
     "numeroCartao" : "STRING",
-    "validadeCartao" : "STRING" format "MM/YYYY",
+    "validadeCartao" : "STRING",
     "valorCompra" : double,
     "bandeira" : "STRING"
 }
 ```
+* FORMATOS:
+	- validadeCartao: "MM/YYYY"
 ### Método DELETE
 
 * PATH: [DOMINIO]/payment/delete/{id}
