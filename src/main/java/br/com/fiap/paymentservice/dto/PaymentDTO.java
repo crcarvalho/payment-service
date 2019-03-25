@@ -2,6 +2,8 @@ package br.com.fiap.paymentservice.dto;
 
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -12,7 +14,7 @@ public class PaymentDTO {
     private String id;
     private String numeroCartao;
     private String validadeCartao;
-    private Double valorCompra;
+    private BigDecimal valorCompra;
     private String bandeira;
 
     @Override
@@ -22,5 +24,14 @@ public class PaymentDTO {
                 +", Validade do Cartão: " + this.getValidadeCartao()
                 +", Valor compra: "+ this.getValorCompra()
                 +", Bandeira: "+ this.getBandeira() +" }");
+    }
+
+
+    public void setValorCompra(BigDecimal value){
+        this.valorCompra = value.setScale(2, BigDecimal.ROUND_UP);
+    }
+
+    public Double getValorCompra(){
+        return this.valorCompra.doubleValue();
     }
 }

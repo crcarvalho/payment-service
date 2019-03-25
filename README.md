@@ -11,7 +11,7 @@
 * PATH: [DOMINIO]/payment/save
 * DESCRIÇÃO: Criação de pagamento.
 * PAYLOAD: 
-`
+```json
 {
     "id" : "STRING",
     "numeroCartao" : "STRING",
@@ -26,7 +26,7 @@
 * DESCRIÇÃO: Atualização do pagamento.
 * PAYLOAD: 
 
-`
+```json
 {
     "numeroCartao" : "STRING",
     "validadeCartao" : "STRING" format "MM/YYYY",

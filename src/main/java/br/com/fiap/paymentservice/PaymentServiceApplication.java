@@ -5,6 +5,8 @@ import br.com.fiap.paymentservice.dto.PaymentDTO;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.math.BigDecimal;
+
 @SpringBootApplication
 public class PaymentServiceApplication {
 
@@ -18,7 +20,7 @@ public class PaymentServiceApplication {
 		pay.setBandeira("VISA");
 		pay.setId("12345");
 		pay.setValidadeCartao("05/2022");
-		pay.setValorCompra(1500.00);
+		pay.setValorCompra(new BigDecimal(1500.00));
 
 		MicroservicePayment service = new MicroservicePayment();
 		service.savePayment(pay);

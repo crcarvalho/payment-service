@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 
 
@@ -25,6 +26,7 @@ public class MicroservicePayment {
         try{
             if( mapPayments.containsKey(id)){
                 payment = mapPayments.get(id);
+
                 res = new ResponseEntity(payment, HttpStatus.OK);
             } else res = new ResponseEntity(null, HttpStatus.NOT_FOUND);
         }catch(Exception e){
@@ -82,7 +84,7 @@ public class MicroservicePayment {
             //Atualiza dados de pagamento
             payment.setBandeira(aPayment.getBandeira());
             payment.setNumeroCartao(aPayment.getNumeroCartao());
-            payment.setValorCompra(aPayment.getValorCompra());
+            payment.setValorCompra(new BigDecimal(aPayment.getValorCompra()));
             payment.setValidadeCartao(aPayment.getValidadeCartao());
             url += payment.getId();
         }catch(Exception e){
