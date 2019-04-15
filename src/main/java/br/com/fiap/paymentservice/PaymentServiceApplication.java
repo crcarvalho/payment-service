@@ -1,6 +1,6 @@
 package br.com.fiap.paymentservice;
 
-import br.com.fiap.paymentservice.controller.MicroservicePayment;
+import br.com.fiap.paymentservice.restcontroller.MicroservicePayment;
 import br.com.fiap.paymentservice.dto.PaymentDTO;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

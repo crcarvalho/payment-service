@@ -1,4 +1,4 @@
-package br.com.fiap.paymentservice.controller;
+package br.com.fiap.paymentservice.restcontroller;
 
 import br.com.fiap.paymentservice.dto.PaymentDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 @RestController
 public class MicroservicePayment {
 
-    private static HashMap<String, PaymentDTO> mapPayments = new HashMap<>();
+    public static HashMap<String, PaymentDTO> mapPayments = new HashMap<>();
 
     @GetMapping("/payment/findById/{id}")
     public ResponseEntity<PaymentDTO> findOrderById(@PathVariable(value="id", required = true) String id){
